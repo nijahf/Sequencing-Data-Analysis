@@ -1,0 +1,19 @@
+```
+#!/bin/bash
+#SBATCH --job-name=bcdsExtract-F1
+#SBATCH --output=bcds.out # Standard out goes to this file
+#SBATCH --error=bcds.err # Standard err goes to this filehostname
+#SBATCH --nodes=1 # Ensure that all cores are on one machine 
+#SBATCH --ntasks-per-node=1 # Number of cores requested
+#SBATCH --mem-per-cpu=8000
+#SBATCH -t 1200 # Runtime in minutes
+#SBATCH -p broadwl # Partition to submit to
+
+echo $SLURM_ARRAY_TASK_ID
+
+module load python
+
+source activate /home/lanijahf/202310PY
+
+python 20231026_bcdExtractF1_LFedit.py
+```
