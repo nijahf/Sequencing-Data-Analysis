@@ -1,3 +1,14 @@
+
+import regex
+import gzip
+from Bio import SeqIO
+
+import scipy
+import numpy as np
+from scipy.sparse import dok_array, save_npz
+
+
+
 def encodeATGC(bcdStr):
     return int(bcdStr.replace("A","0").replace("T","1").replace("G","2").replace("C","3"), 4)
 
