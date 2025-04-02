@@ -1,3 +1,7 @@
+import sys
+sys.path.append("./")
+import DNA_encoding as DNAE
+
 #### Data files
 
 
@@ -22,6 +26,7 @@ import scipy
 import numpy as np
 from scipy.sparse import dok_array, save_npz
 
+"""
 
 def encodeATGC(bcdStr):
     return int(bcdStr.replace("A","0").replace("T","1").replace("G","2").replace("C","3"), 4)
@@ -35,7 +40,7 @@ def decodeATGC(bcdInt, bcdLength = 12):
     bcdString = np.base_repr(bcdInt, base = 4)
     bcdString = ("0"*(bcdLength-len(bcdString)) ) + bcdString
     return bcdString.replace("0","A").replace("1","T").replace("2","G").replace("3","C")
-
+"""
 
 
 bcdlength = 12
@@ -89,8 +94,10 @@ for fastq in fastqList:
                     bcdseq = bcdseq + 1
                     umi = m.groups()[0]
                 
-                    bcdUMICounts[encodeBcd(bcd), encodeATGC(umi)] = bcdUMICounts[encodeBcd(bcd), encodeATGC(umi)] + 1
-                    bcdCounts[encodeBcd(bcd), 0] = bcdCounts[encodeBcd(bcd), 0] + 1
+                    #bcdUMICounts[encodeBcd(bcd), encodeATGC(umi)] = bcdUMICounts[encodeBcd(bcd), encodeATGC(umi)] + 1
+                    #bcdCounts[encodeBcd(bcd), 0] = bcdCounts[encodeBcd(bcd), 0] + 1
+                    bcdUMICounts[DNAE.encodeBCd(bcd), DNAE.encodeATGC(umi)] = bcdUMICounts[DNAE.encodeBcd(bcd), DNAE.encodeATGC(umi)] + 1
+  
 
                 
     print(fastq)            
